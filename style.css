@@ -1,5 +1,9 @@
 body {
   font-family: Arial, sans-serif;
-  background: #9c9a9a;
+  background: #aeadad;
   padding: 40px;
+}
+.welcome {
+  color: #f8d4f2;
+  text-align: center;
 }
