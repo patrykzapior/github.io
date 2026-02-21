@@ -1,13 +1,71 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="style.css">
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
   <title>Moja strona</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- STYLE -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1 class="welcome">Strona Patryka Zapióra</h1>
-  <p> Witaj!
-  </p>
+
+  <h1 class="welcome">Patryk Zapiór</h1>
+
+  <!-- ZAKŁADKI -->
+  <div class="tabs">
+    <button class="tab active" data-tab="tab1">Start</button>
+    <button class="tab" data-tab="tab2">Zdjęcia kota</button>
+    <button class="tab" data-tab="tab3">Zdjęcia rózne</button>
+    <button class="tab" data-tab="tab4">Inne</button>
+    <button class="tab" data-tab="tab5">Kontakt</button>
+  </div>
+
+  <!-- TREŚĆ ZAKŁADEK -->
+  <div id="tab1" class="tab-content active">
+    <h2>Start</h2>
+    <p>Witaj na mojej stronie 🚀</p>
+  </div>
+
+  <div id="tab2" class="tab-content">
+    <h2>Zdjęcia kota</h2>
+    <p>Kilka zdjęć kota.</p>
+
+    <div class="gallery">
+        <img src="IMG_7089.jpg" alt="" class="main-image zoomable">
+        <img src="IMG_7089.jpg" alt="" class="main-image zoomable">
+        <img src="IMG_8222.jpg" alt="" class="main-image zoomable">
+        <img src="IMG_8242.jpg" alt="" class="main-image zoomable">
+        <img src="IMG_8255.jpg" alt="" class="main-image zoomable">
+        <img src="IMG_8260.jpg" alt="" class="main-image zoomable">
+        <img src="IMG_8340.jpg" alt="" class="main-image zoomable">
+        <img src="IMG_8355.jpg" alt="" class="main-image zoomable">
+        <img src="IMG_8359.jpg" alt="" class="main-image zoomable">
+        <img src="IMG_8022.jpg" alt="" class="main-image zoomable">
+        <img src="IMG_8202.jpg" alt="" class="main-image zoomable">
+        <img src="IMG_8330.jpg" alt="" class="main-image zoomable">
+    </div>
+  </div>
+
+  <div id="tab3" class="tab-content">
+    <h2>Zdjęcia rózne</h2>
+    <p>Kilka zdjęć róznych.</p>
+  </div>
+
+  <div id="tab4" class="tab-content">
+    <h2>Inne</h2>
+    <p>Inne zdjęcia.</p>
+  </div>
+
+  <div id="tab5" class="tab-content">
+    <h2>Kontakt</h2>
+    <p>Email: zapiorpatryk@gmail.com</p>
+  </div>
+
+  <div id="img-lightbox">
+    <img id="img-lightbox-content">
+  </div>
+  
+  <script src="script.js"></script>
 </body>
 </html>
