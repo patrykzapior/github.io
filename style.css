@@ -1,17 +1,28 @@
 /* --- OGÓLNE --- */
+:root {
+  /* TRYB JASNY - możesz tu wpisać np. #f0f2f5 dla lekkiego błękitu lub #fff dla bieli */
+  --bg-color: #5a5a5a; 
+  --container-bg: #ffffff;
+  --text-color: #333333;
+  --tab-inactive: #e0e0e0;
+  --tab-active: #1e90ff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* TRYB CIEMNY - głęboki granat lub czerń */
+    --bg-color: #0f172a; 
+    --container-bg: #1e293b;
+    --text-color: #f8fafc;
+    --tab-inactive: #334155;
+    --tab-active: #38bdf8;
+  }
+}
 body {
   font-family: Arial, sans-serif;
   padding: 20px; /* Zmniejszone z 40px dla lepszego wyglądu na mobile */
   background: #f5f5f5;
   margin: 0;
-}
-:root {
-  /* TRYB JASNY - możesz tu wpisać np. #f0f2f5 dla lekkiego błękitu lub #fff dla bieli */
-  --bg-color: #808080; 
-  --container-bg: #ffffff;
-  --text-color: #333333;
-  --tab-inactive: #e0e0e0;
-  --tab-active: #1e90ff;
 }
 
 @media (prefers-color-scheme: dark) {
