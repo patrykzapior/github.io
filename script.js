@@ -68,7 +68,7 @@ itemInput.addEventListener('keypress', (e) => {
 */
 // Konfiguracja Firebase (dane weźmiesz z ustawień projektu w Firebase)
 const firebaseConfig = {
-  databaseURL: "https://TWOJA-NAZWA-PROJEKTU.europe-west1.firebasedatabase.app/"
+  databaseURL: "https://shopping-list-cccee-default-rtdb.firebaseio.com/" 
 };
 
 // Inicjalizacja
