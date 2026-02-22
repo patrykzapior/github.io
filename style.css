@@ -1,16 +1,21 @@
+/* --- OGÓLNE --- */
 body {
   font-family: Arial, sans-serif;
-  padding: 40px;
+  padding: 20px; /* Zmniejszone z 40px dla lepszego wyglądu na mobile */
   background: #f5f5f5;
+  margin: 0;
 }
 
 .welcome {
   color: #000000;
+  text-align: center;
 }
 
-/* zakładki */
+/* --- ZAKŁADKI --- */
 .tabs {
   margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap; /* Pozwala zakładkom przechodzić do nowej linii */
 }
 
 .tab {
@@ -19,7 +24,11 @@ body {
   cursor: pointer;
   background: #ddd;
   margin-right: 5px;
+  margin-bottom: 5px;
   border-radius: 5px 5px 0 0;
+  transition: background 0.3s;
+  flex-grow: 1; /* Zakładki dzielą się przestrzenią */
+  text-align: center;
 }
 
 .tab.active {
@@ -27,124 +36,55 @@ body {
   color: white;
 }
 
-/* treść */
+/* --- TREŚĆ ZAKŁADEK --- */
 .tab-content {
   display: none;
   background: white;
   padding: 20px;
   border-radius: 0 5px 5px 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .tab-content.active {
   display: block;
 }
 
-/* obrazek */
-.main-image {
-  width: 300px;
-  max-width: 100%;
-  height: auto;
-  cursor: zoom-in;
-  display: block;
-  margin: 20px auto;
-}
-
-.zoomable {
-  width: 40%;        /* procent kontenera */
-  max-width: 300px;
-  height: auto;
-  cursor: zoom-in;
-  display: block;
-  margin: 20px auto;
-}
-
-/* =========================
-   GALERIA
-========================= */
+/* --- GALERIA ZDJĘĆ --- */
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 15px;
-  /*cursor: zoom-in;*/
 }
 
 .gallery img {
   width: 100%;
+  height: auto;
   border-radius: 6px;
-  /*cursor: pointer;*/
+  cursor: zoom-in;
   transition: transform 0.2s, box-shadow 0.2s;
+  display: block;
 }
 
 .gallery img:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
-#img-lightbox {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.85);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-#img-lightbox-content {
-  width: 80vw;       /* 80% szerokości okna */
-  max-width: 100%;
-  max-height: 90vh;  /* 90% wysokości okna */
-  height: auto;
-  object-fit: contain;
-  border-radius: 8px;
-  animation: zoomIn 0.25s ease-out;
-}
-
-@keyframes zoomIn {
-  from { transform: scale(0.9); opacity: 0; }
-  to   { transform: scale(1); opacity: 1; }
-}
-
-#shopping-list {
-  list-style: none;
-  padding: 0;
-  margin-top: 20px;
-}
-
-#shopping-list li {
-  background: #eee;
-  margin-bottom: 8px;
-  padding: 10px;
+/* --- LISTA ZAKUPÓW --- */
+.shopping-list-input {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 4px;
-}
-
-#shopping-list li span {
-  cursor: pointer;
-  flex-grow: 1;
-}
-
-#shopping-list li.completed span {
-  text-decoration: line-through;
-  color: #888;
-}
-
-.delete-btn {
-  background: #f96a6a;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 3px;
-  cursor: pointer;
+  gap: 10px;
+  margin-bottom: 20px;
+  width: 100%; /* Upewnia się, że trzyma się szerokości rodzica */
 }
 
 .shopping-list-input input {
-  padding: 10px;
-  width: 100%;
-  border: 1px solid #ddd;
+  flex-grow: 1;
+  padding: 12px;
+  border:1px solid #ddd;
   border-radius: 4px;
+  width: 70%;
+  font-size: 16px; /* Zapobiega auto-zoomowaniu na iPhone */
 }
 
 .shopping-list-input button {
@@ -154,4 +94,102 @@ body {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-weight: bold;
+}
+
+#shopping-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+#shopping-list li {
+  background: #fff;
+  margin-bottom: 8px;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 4px;
+  border: 1px solid #eee;
+  box-sizing: border-box;
+}
+
+#shopping-list li span {
+  cursor: pointer;
+  flex-grow: 1;
+  font-size: 16px;
+}
+
+#shopping-list li.completed span {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.delete-btn {
+  background-color: #ff4d4d !important;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+/* --- LIGHTBOX (POWIĘKSZANIE) --- */
+#img-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+#img-lightbox-content {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 4px;
+  animation: zoomIn 0.25s ease-out;
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+/* --- RESPONSYWNOŚĆ (MOBILE) --- */
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+
+  .tabs {
+    flex-direction: column;
+  }
+
+  .tab {
+    margin-right: 0;
+    border-radius: 5px;
+  }
+
+  .tab-content {
+    border-radius: 5px;
+  }
+
+  .shopping-list-input {
+    flex-direction: column;
+  }
+
+  .shopping-list-input button {
+    width: 100%;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 8px;
+  }
 }
