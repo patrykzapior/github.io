@@ -17,7 +17,7 @@
     <button class="tab active" data-tab="tab1">Start</button>
     <button class="tab" data-tab="tab2">Zdjęcia kota</button>
     <button class="tab" data-tab="tab3">Zdjęcia rózne</button>
-    <button class="tab" data-tab="tab4">Inne</button>
+    <button class="tab" data-tab="tab4">Lista zakupów</button>
     <button class="tab" data-tab="tab5">Kontakt</button>
   </div>
 
@@ -52,8 +52,14 @@
   </div>
 
   <div id="tab4" class="tab-content">
-    <h2>Inne</h2>
-    <p>Inne zdjęcia.</p>
+    <h2>Lista zakupów</h2>
+    <div class="shopping-list-input">
+      <input type="text" id="item-input" placeholder="Co trzeba kupić?">
+      <button id="add-button">Dodaj</button>
+    </div>
+    <ul id="shopping-list"></ul>
+  </div>
+      
   </div>
 
   <div id="tab5" class="tab-content">

@@ -104,3 +104,54 @@ body {
   from { transform: scale(0.9); opacity: 0; }
   to   { transform: scale(1); opacity: 1; }
 }
+
+#shopping-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+#shopping-list li {
+  background: #eee;
+  margin-bottom: 8px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 4px;
+}
+
+#shopping-list li span {
+  cursor: pointer;
+  flex-grow: 1;
+}
+
+#shopping-list li.completed span {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.delete-btn {
+  background: #f96a6a;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.shopping-list-input input {
+  padding: 10px;
+  width: 70%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.shopping-list-input button {
+  padding: 10px 20px;
+  background: #1e90ff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
