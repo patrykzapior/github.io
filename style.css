@@ -7,7 +7,7 @@ body {
 }
 :root {
   /* TRYB JASNY - możesz tu wpisać np. #f0f2f5 dla lekkiego błękitu lub #fff dla bieli */
-  --bg-color: #eef2f3; 
+  --bg-color: #808080; 
   --container-bg: #ffffff;
   --text-color: #333333;
   --tab-inactive: #e0e0e0;
