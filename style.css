@@ -30,9 +30,17 @@ body {
   flex-grow: 1; /* Zakładki dzielą się przestrzenią */
   text-align: center;
 }
+#add-button:active {
+  transform: scale(0.97); /* Efekt wciśnięcia przycisku */
+}
+
+#add-button {
+  background: linear-gradient(135deg, #e1b0ff 0%, #0077ff 100%);
+  color: white; 
+}
 
 .tab.active {
-  background: #1e90ff;
+  background: linear-gradient(135deg, #e1b0ff 0%, #0077ff 100%);
   color: white;
 }
 
