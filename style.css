@@ -76,15 +76,17 @@ body {
   gap: 10px;
   margin-bottom: 20px;
   width: 100%; /* Upewnia się, że trzyma się szerokości rodzica */
+  box-sizing: border-box; /* Uwzględnia padding w szerokości */
 }
 
 .shopping-list-input input {
-  flex-grow: 1;
+flex-grow: 1;
+  min-width: 0; /* Zapobiega "wypychaniu" flexboxa przez długi tekst */
   padding: 12px;
-  border:1px solid #ddd;
+  border: 1px solid #ddd;
   border-radius: 4px;
-  width: 70%;
-  font-size: 16px; /* Zapobiega auto-zoomowaniu na iPhone */
+  font-size: 16px;
+  box-sizing: border-box; /* KLUCZOWE: padding nie powiększa szerokości inputa */
 }
 
 .shopping-list-input button {
