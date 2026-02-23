@@ -140,7 +140,10 @@ body {
   border-color: #1e90ff;
 }
 
-.shopping-list-input button {
+
+/* Wspólny styl dla obu przycisków */
+.shopping-list-input button, 
+.upload-container button {
   padding: 10px 25px;
   background: linear-gradient(135deg, #f75fbd 0%, #0077ff 100%);
   color: white;
@@ -149,6 +152,8 @@ body {
   cursor: pointer;
   font-weight: bold;
   transition: transform 0.1s;
+  /* Dodaję szerokość, żeby na telefonie dobrze się klikało */
+  min-width: 200px;
 }
 
 .shopping-list-input button:active {
@@ -165,6 +170,7 @@ body {
 #shopping-list li {
   background: var(--content-bg);
   margin-bottom: 10px;
+  height: 45px;
   padding: 15px;
   display: flex;
   justify-content: space-between;

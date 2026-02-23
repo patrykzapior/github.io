@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <!-- STYLE -->
   <link rel="stylesheet" href="style.css">
 </head>
@@ -20,6 +21,7 @@
     <button class="tab" data-tab="tab3">Zdjęcia rózne</button>
     <button class="tab" data-tab="tab4">Lista zakupów</button>
     <button class="tab" data-tab="tab5">Kontakt</button>
+    <button class="tab" data-tab="tab6">Zdjęcia Kota</button>
   </div>
 
   <!-- TREŚĆ ZAKŁADEK -->
@@ -61,6 +63,19 @@
     <ul id="shopping-list"></ul>
   </div>
       
+  <div id="tab6" class="tab-content">
+    <h2>Galeria Zdjęć</h2>
+  
+    <div class="upload-container">
+      <p>Dodaj nowe zdjęcie kota z telefonu lub komputera:</p>
+        <input type="file" id="photo-input" accept="image/*" style="display: none;">
+        <button onclick="document.getElementById('photo-input').click()" class="shopping-list-input button">
+          Wybierz zdjęcie
+        </button>
+      <p id="upload-status"></p>
+  </div>
+
+  <div id="cloud-gallery" class="gallery"></div>
   </div>
 
   <div id="tab5" class="tab-content">
