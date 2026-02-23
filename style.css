@@ -1,139 +1,158 @@
-/* --- OGÓLNE --- */
+/* --- ZMIENNE KOLORÓW (DARK / LIGHT MODE) --- */
 :root {
-  /* TRYB JASNY - możesz tu wpisać np. #f0f2f5 dla lekkiego błękitu lub #fff dla bieli */
-  --bg-color: #5a5a5a; 
-  --container-bg: #ffffff;
+  /* Tryb JASNY */
+  --bg-color: #f5f5f5;
+  --content-bg: #ffffff;
   --text-color: #333333;
-  --tab-inactive: #e0e0e0;
-  --tab-active: #1e90ff;
+  --heading-color: #000000;
+  --tab-inactive: #dddddd;
+  --border-color: #eeeeee;
+  --shadow: rgba(0, 0, 0, 0.1);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    /* TRYB CIEMNY - głęboki granat lub czerń */
-    --bg-color: #0f172a; 
-    --container-bg: #1e293b;
-    --text-color: #f8fafc;
-    --tab-inactive: #334155;
-    --tab-active: #38bdf8;
+    /* Tryb CIEMNY */
+    --bg-color: #121212;
+    --content-bg: #1e1e1e;
+    --text-color: #e0e0e0;
+    --heading-color: #ffffff;
+    --tab-inactive: #333333;
+    --border-color: #444444;
+    --shadow: rgba(0, 0, 0, 0.5);
   }
 }
+
+/* --- OGÓLNE --- */
 body {
-  font-family: Arial, sans-serif;
-  padding: 20px; /* Zmniejszone z 40px dla lepszego wyglądu na mobile */
-  background: #f5f5f5;
+  font-family: 'Inter', Arial, sans-serif; /* Założyłem, że Inter może być dodany w HTML */
+  padding: 20px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   margin: 0;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* TRYB CIEMNY - głęboki granat lub czerń */
-    --bg-color: #0f172a; 
-    --container-bg: #1e293b;
-    --text-color: #f8fafc;
-    --tab-inactive: #334155;
-    --tab-active: #38bdf8;
-  }
-}
 .welcome {
-  color: #000000;
+  color: var(--heading-color);
   text-align: center;
+  margin-bottom: 30px;
 }
 
 /* --- ZAKŁADKI --- */
 .tabs {
-  margin-top: 20px;
   display: flex;
-  flex-wrap: wrap; /* Pozwala zakładkom przechodzić do nowej linii */
+  flex-wrap: wrap;
+  gap: 5px;
+  max-width: 900px;
+  margin: 0 auto 20px auto;
 }
 
 .tab {
-  padding: 10px 20px;
+  padding: 12px 20px;
   border: none;
   cursor: pointer;
-  background: #ddd;
-  margin-right: 5px;
-  margin-bottom: 5px;
-  border-radius: 5px 5px 0 0;
-  transition: background 0.3s;
-  flex-grow: 1; /* Zakładki dzielą się przestrzenią */
+  background: var(--tab-inactive);
+  color: var(--text-color);
+  border-radius: 8px 8px 0 0;
+  transition: all 0.2s ease;
+  flex-grow: 1;
   text-align: center;
-}
-#add-button:active {
-  transform: scale(0.97); /* Efekt wciśnięcia przycisku */
-}
-
-#add-button {
-  background: linear-gradient(135deg, #e1b0ff 0%, #0077ff 100%);
-  color: white; 
+  font-weight: bold;
 }
 
 .tab.active {
-  background: linear-gradient(135deg, #e1b0ff 0%, #0077ff 100%);
+  background: linear-gradient(135deg, #f75fbd 0%, #0070e0 100%);  
   color: white;
+  box-shadow: 0 -2px 10px rgba(30, 144, 255, 0.3);
+}
+
+.tab:hover:not(.active) {
+  filter: brightness(1.1);
 }
 
 /* --- TREŚĆ ZAKŁADEK --- */
 .tab-content {
   display: none;
-  background: white;
-  padding: 20px;
-  border-radius: 0 5px 5px 5px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  background: var(--content-bg);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px var(--shadow);
+  max-width: 900px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .tab-content.active {
   display: block;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* --- GALERIA ZDJĘĆ --- */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 15px;
 }
 
 .gallery img {
   width: 100%;
-  height: auto;
-  border-radius: 6px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 8px;
   cursor: zoom-in;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s;
   display: block;
 }
 
 .gallery img:hover {
   transform: scale(1.03);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 /* --- LISTA ZAKUPÓW --- */
 .shopping-list-input {
   display: flex;
   gap: 10px;
-  margin-bottom: 20px;
-  width: 100%; /* Upewnia się, że trzyma się szerokości rodzica */
-  box-sizing: border-box; /* Uwzględnia padding w szerokości */
+  margin-bottom: 25px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .shopping-list-input input {
-flex-grow: 1;
-  min-width: 0; /* Zapobiega "wypychaniu" flexboxa przez długi tekst */
+  flex-grow: 1;
+  min-width: 0;
   padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  background: var(--content-bg);
+  color: var(--text-color);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
   font-size: 16px;
-  box-sizing: border-box; /* KLUCZOWE: padding nie powiększa szerokości inputa */
+  box-sizing: border-box;
+  outline: none;
+}
+
+.shopping-list-input input:focus {
+  border-color: #1e90ff;
 }
 
 .shopping-list-input button {
-  padding: 10px 20px;
-  background: #1e90ff;
+  padding: 10px 25px;
+  background: linear-gradient(135deg, #f75fbd 0%, #0077ff 100%);
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
+  transition: transform 0.1s;
+}
+
+.shopping-list-input button:active {
+  transform: scale(0.95);
 }
 
 #shopping-list {
@@ -144,14 +163,14 @@ flex-grow: 1;
 }
 
 #shopping-list li {
-  background: #fff;
-  margin-bottom: 8px;
-  padding: 12px;
+  background: var(--content-bg);
+  margin-bottom: 10px;
+  padding: 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 4px;
-  border: 1px solid #eee;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
   box-sizing: border-box;
 }
 
@@ -164,19 +183,20 @@ flex-grow: 1;
 #shopping-list li.completed span {
   text-decoration: line-through;
   color: #888;
+  opacity: 0.6;
 }
 
 .delete-btn {
   background-color: #ff4d4d !important;
   color: white;
   border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
+  padding: 8px 15px;
+  border-radius: 6px;
   cursor: pointer;
-  margin-left: 10px;
+  font-size: 14px;
 }
 
-/* --- LIGHTBOX (POWIĘKSZANIE) --- */
+/* --- LIGHTBOX --- */
 #img-lightbox {
   position: fixed;
   inset: 0;
@@ -184,51 +204,33 @@ flex-grow: 1;
   display: none;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 2000;
 }
 
 #img-lightbox-content {
   max-width: 90vw;
   max-height: 90vh;
   object-fit: contain;
-  border-radius: 4px;
-  animation: zoomIn 0.25s ease-out;
-}
-
-@keyframes zoomIn {
-  from { transform: scale(0.9); opacity: 0; }
-  to   { transform: scale(1); opacity: 1; }
+  border-radius: 8px;
 }
 
 /* --- RESPONSYWNOŚĆ (MOBILE) --- */
 @media (max-width: 600px) {
-  body {
-    padding: 10px;
-  }
+  body { padding: 10px; }
 
-  .tabs {
-    flex-direction: column;
-  }
+  .tabs { flex-direction: column; }
 
   .tab {
     margin-right: 0;
-    border-radius: 5px;
+    border-radius: 8px;
+    padding: 15px;
   }
 
-  .tab-content {
-    border-radius: 5px;
-  }
+  .tab-content { padding: 15px; }
 
-  .shopping-list-input {
-    flex-direction: column;
-  }
-
-  .shopping-list-input button {
-    width: 100%;
-  }
+  .shopping-list-input { flex-direction: column; }
 
   .gallery {
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 8px;
   }
 }
