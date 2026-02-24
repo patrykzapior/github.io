@@ -109,10 +109,10 @@ if (photoInput) {
 
         uploadStatus.innerText = "Wysyłanie zdjęcia...";
 
-        // 1. Upload do Storage (Bucket: 'zdjecia-kota')
+        // 1. Upload do Storage (Bucket: 'koty')
         const fileName = `${Date.now()}_${file.name}`;
         const { data: uploadData, error: uploadError } = await supabaseClient.storage
-            .from('zdjecia-kota')
+            .from('koty')
             .upload(fileName, file);
 
         if (uploadError) {
@@ -122,7 +122,7 @@ if (photoInput) {
 
         // 2. Pobranie URL
         const { data: urlData } = supabaseClient.storage
-            .from('zdjecia-kota')
+            .from('koty')
             .getPublicUrl(fileName);
 
         // 3. Zapis do bazy Supabase (Tabela: 'photos')
@@ -132,6 +132,7 @@ if (photoInput) {
 
         if (dbError) {
             uploadStatus.innerText = "Błąd bazy danych.";
+            console.error("Złapany błąd:", dbError);
         } else {
             uploadStatus.innerText = "Dodano pomyślnie!";
             odswiezGalerieSupabase();
