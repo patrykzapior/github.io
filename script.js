@@ -134,7 +134,7 @@ if (photoInput) {
             uploadStatus.innerText = "Błąd bazy danych.";
             console.error("Złapany błąd:", dbError);
         } else {
-            uploadStatus.innerText = "Dodano pomyślnie!";
+            uploadStatus.innerText = "Dodane!";
             odswiezGalerieSupabase();
         }
     });
