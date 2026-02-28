@@ -1,3 +1,22 @@
+function checkPin() {
+  const pin = document.getElementById('pin-code').value;
+  const errorText = document.getElementById('pin-error');
+  
+  if (pin === "2345") {
+    document.getElementById('pin-overlay').style.display = 'none';
+  } 
+  else if (pin === "") {
+    errorText.innerText = "Wprowadź PIN";
+  }
+  else {
+    errorText.innerText = "Błędny PIN";
+  }
+}
+
+// Opcjonalnie: Obsługa klawisza Enter
+document.getElementById('pin-code').addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') checkPin();
+});
 /* ============================================================
    1. KONFIGURACJA USŁUG (FIREBASE + SUPABASE)
    ============================================================ */
@@ -183,3 +202,29 @@ document.querySelectorAll('.zoomable').forEach(img => {
 window.onload = () => {
     odswiezGalerieSupabase();
 };
+
+async function odswiezGalerieSupabase() {
+    const cloudGallery = document.getElementById('cloud-gallery');
+    if (!cloudGallery) return;
+
+    // Pobierz wszystkie zdjęcia z bazy
+    const { data: photos, error } = await supabaseClient
+        .from('photos')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+    if (error) return;
+
+    // Usuń tylko poprzednie zdjęcia (wszystkie tagi <img>), nie usuwaj "plusa"
+    const existingImages = cloudGallery.querySelectorAll('img');
+    existingImages.forEach(img => img.remove());
+
+    // Dodaj zdjęcia do galerii
+    photos.forEach(photo => {
+        const img = document.createElement('img');
+        img.src = photo.url;
+        img.className = 'main-image zoomable';
+        img.onclick = () => otworzLightbox(photo.url);
+        cloudGallery.appendChild(img);
+    });
+}
