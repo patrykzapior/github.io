@@ -303,8 +303,8 @@ body {
 /* Wersja na telefony (trochę mniejszy kafel) */
 @media (max-width: 600px) {
   .add-photo-card {
-    width: 120px;
-    height: 120px;
+    width: 195px;
+    height: 195px;
   }
   .add-photo-card .plus-icon {
     font-size: 48px;
