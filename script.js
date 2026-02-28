@@ -1,22 +1,3 @@
-function checkPin() {
-  const pin = document.getElementById('pin-code').value;
-  const errorText = document.getElementById('pin-error');
-  
-  if (pin === "2345") {
-    document.getElementById('pin-overlay').style.display = 'none';
-  } 
-  else if (pin === "") {
-    errorText.innerText = "Wprowadź PIN";
-  }
-  else {
-    errorText.innerText = "Błędny PIN";
-  }
-}
-
-// Opcjonalnie: Obsługa klawisza Enter
-document.getElementById('pin-code').addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') checkPin();
-});
 /* ============================================================
    1. KONFIGURACJA USŁUG (FIREBASE + SUPABASE)
    ============================================================ */
@@ -34,6 +15,57 @@ const supabaseUrl = 'https://sagwegxmvzcpfhxtosfu.supabase.co';
 const supabaseKey = 'sb_publishable_K4GICQ13uODan3npC5tp3Q_pcgs6hko';
 const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 
+/* ============================================================
+   1. obsługa logowania z pinem
+   ============================================================ */
+let correctPin = ""; // Zmienna na PIN pobrany z bazy
+
+// Pobieranie PIN-u z bazy podczas ładowania strony
+async function loadPinFromDatabase() {
+    console.log("Próbuję pobrać PIN z tabeli 'settings'...");
+
+    const { data, error } = await supabaseClient
+        .from('settings')
+        .select('value')
+        .eq('key', 'site_pin')
+        .single();
+
+    if (error) {
+        console.error("Nie udało się pobrać PIN-u z bazy:", error);
+    } else {
+        correctPin = data.value;
+        console.log("pobarny pin: ", correctPin)
+        let a = correctPin.length;
+        console.log("dlugosc: ",a);
+      }
+}
+// Zmieniona funkcja sprawdzania
+function checkPin() {
+    const userInput = document.getElementById('pin-code').value;
+    const errorText = document.getElementById('pin-error');
+
+    console.info("correct pin 1:", correctPin);
+    console.info("user pin 1:", userInput);
+
+    if (userInput === correctPin && correctPin !== "") {
+        document.getElementById('pin-overlay').style.display = 'none';
+    }
+    else if (userInput === "") {
+        errorText.innerText = "Wprowadź PIN!";  
+    } else {
+        errorText.innerText = "Błędny PIN!";
+    }
+}
+window.addEventListener('load', async () => {
+    console.log("Strona załadowana, uruchamiam PIN...");
+    await loadPinFromDatabase(); 
+    odswiezGalerieSupabase();
+});
+
+// Opcjonalnie: Obsługa klawisza Enter
+document.getElementById('pin-code').addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') checkPin();
+});
 
 /* ============================================================
    2. OBSŁUGA ZAKŁADEK (TABS)
