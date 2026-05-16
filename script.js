@@ -191,24 +191,7 @@ if (photoInput) {
     });
 }
 
-async function odswiezGalerieSupabase() {
-    if (!cloudGallery) return;
-    const { data: photos, error } = await supabaseClient
-        .from('photos')
-        .select('*')
-        .order('created_at', { ascending: false });
 
-    if (error) return;
-
-    cloudGallery.innerHTML = "";
-    photos.forEach(photo => {
-        const img = document.createElement('img');
-        img.src = photo.url;
-        img.className = 'main-image zoomable';
-        img.onclick = () => otworzLightbox(photo.url);
-        cloudGallery.appendChild(img);
-    });
-}
 
 /* ============================================================
    5. LIGHTBOX & INICJALIZACJA
